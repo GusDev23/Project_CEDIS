@@ -1,0 +1,285 @@
+PROCEDIMIENTOS ALMACENADOS CRUD
+
+---------CLIENTE---------------
+CREATE PROC Cliente_Update
+    @id int,
+    @nombre varchar(45),
+    @direccion varchar(45),
+    @telefono varchar(10)
+  
+AS 
+BEGIN 
+ 
+UPDATE Cliente
+SET  nombreEmpresa = @nombre,
+     direccion = @direccion, 
+     telefono = @telefono
+WHERE  idCliente = @id
+END
+GO
+
+--------------
+
+CREATE PROCEDURE Cliente_Create
+
+    @nombre varchar(45),
+    @direccion varchar(45),
+    @telefono varchar(10)
+	 
+AS
+BEGIN
+INSERT INTO Cliente(
+	   nombreEmpresa,
+	   direccion,
+	   telefono)
+    VALUES (
+	   @nombre,
+	   @direccion,
+	   @telefono)
+END
+GO
+
+-----------------------
+
+CREATE PROC Cliente_Delete 
+    @id int
+AS 
+BEGIN 
+DELETE
+FROM   Cliente
+WHERE  idCliente = @id
+
+END
+GO
+
+-----------------------
+CREATE PROC Cliente_Read
+AS 
+BEGIN 
+    SELECT * FROM Cliente   
+END
+GO
+
+--------PROVEEDOR---------
+
+CREATE PROC Proveedor_Update
+    @id int,
+    @nombre varchar(50),
+    @direccion varchar(50),
+    @telefono varchar(45)
+  
+AS 
+BEGIN 
+ 
+UPDATE Proveedor
+SET  nombre = @nombre,
+     direccion = @direccion, 
+     telefono = @telefono
+WHERE  idProveedor = @id
+END
+GO
+
+--------------
+
+CREATE PROCEDURE Proveedor_Create
+
+    @nombre varchar(45),
+    @direccion varchar(45),
+    @telefono varchar(10)
+	 
+AS
+BEGIN
+INSERT INTO Proveedor(
+	   nombre,
+	   direccion,
+	   telefono)
+    VALUES (
+	   @nombre,
+	   @direccion,
+	   @telefono)
+END
+GO
+
+-----------------------
+
+CREATE PROC Proveedor_Delete 
+    @id int
+AS 
+BEGIN 
+DELETE
+FROM   Proveedor
+WHERE  idProveedor = @id
+
+END
+GO
+
+-----------PRODUCTO-------------
+
+CREATE PROC Producto_Update
+    @id int,
+    @nombre varchar(45),
+    @marca varchar(45),
+    @sabor varchar(45),
+	@existencia int
+  
+AS 
+BEGIN 
+ 
+UPDATE Producto
+SET  nombre = @nombre,
+     marca = @marca, 
+     sabor = @sabor,
+	 existencia=@existencia
+WHERE  idProducto = @id
+END
+GO
+
+--------------
+
+CREATE PROCEDURE Producto_Create
+
+    @nombre varchar(45),
+    @marca varchar(45),
+    @sabor varchar(45),
+	@existencia int
+	 
+AS
+BEGIN
+INSERT INTO Producto(
+	   nombre,
+	   marca,
+	   sabor,
+	   existencia)
+    VALUES (
+	   @nombre,
+	   @marca,
+	   @sabor,
+	   @existencia)
+END
+GO
+
+-----------------------
+
+CREATE PROC Producto_Delete 
+    @id int
+AS 
+BEGIN 
+DELETE
+FROM   Producto
+WHERE  idProducto = @id
+
+END
+GO
+
+----------ENTREGA----------
+
+CREATE PROC Entrega_Update
+    @id int,
+    @f_proveedor int,
+    @f_producto int,
+    @cantidad int,
+	@fecha date
+  
+AS 
+BEGIN 
+ 
+UPDATE Entrega
+SET  f_idProveedor = @f_proveedor,
+     f_idProducto = @f_producto, 
+     cantidad = @cantidad,
+	 fecha=@fecha
+WHERE  idEntrega = @id
+END
+GO
+
+--------------
+
+CREATE PROCEDURE Entrega_Create
+
+    @f_proveedor int,
+    @f_producto int,
+    @cantidad int,
+	@fecha date
+	 
+AS
+BEGIN
+INSERT INTO Entrega(
+	   f_idProveedor,
+	   f_idProducto,
+	   cantidad,
+	   fecha)
+    VALUES (
+	   @f_proveedor,
+	   @f_producto,
+	   @cantidad,
+	   @fecha)
+END
+GO
+
+-----------------------
+
+CREATE PROC Entrega_Delete 
+    @id int
+AS 
+BEGIN 
+DELETE
+FROM   Entrega
+WHERE  idEntrega = @id
+
+END
+GO
+
+
+----------RECIBE--------
+
+CREATE PROC Recibe_Update
+    @id int,
+    @chofer varchar(45),
+    @fecha datetime,
+    @f_compra int
+  
+AS 
+BEGIN 
+ 
+UPDATE Recibe
+SET  chofer = @chofer,
+     fechaEntrega = @fecha, 
+     f_idCompra = @f_compra
+WHERE  idRecibe = @id
+END
+GO
+
+--------------
+
+CREATE PROCEDURE Recibe_Create
+
+    @chofer varchar(45),
+    @fecha datetime,
+    @f_compra int
+	 
+AS
+BEGIN
+INSERT INTO Recibe(
+	   chofer,
+	   fechaEntrega,
+	   f_idCompra)
+    VALUES (
+	   @chofer,
+	   @fecha,
+	   @f_compra)
+END
+GO
+
+-----------------------
+
+CREATE PROC Recibe_Delete 
+    @id int
+AS 
+BEGIN 
+DELETE
+FROM   Recibe
+WHERE  idRecibe = @id
+
+END
+GO
+
